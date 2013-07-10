@@ -21,7 +21,13 @@ object Minesweeper {
     "*1"
   )
 
-  def neighbours(in:Field) : Seq [(Int,Int)] = {
-    Seq.empty
+  def neighbours(row: Int, col: Int) : Seq[(Int,Int)] = {
+    for {
+      x <- row - 1 to row + 1
+      y <- col -1 to col+1
+    } yield {
+      Seq.empty
+    }
+    Seq((-1, -1), (-1, 0), (-1, 1), (0, -1), (0 ,1), (1, -1), (1, 0), (1, 1))
   }
 }
