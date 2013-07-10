@@ -15,11 +15,10 @@ object Minesweeper {
     if(char == '*')
    } yield (rowIndex, columnIndex)).toSet
 
-  def evaluate(in:List[String]) :List[String] = List(
-    "1*",
-    "22",
-    "*1"
-  )
+  def evaluate(in:List[String]) :List[String] = {
+    val field = parse(in)
+    (0 until field.rows).map(row => createLine(field, row)).toList
+  }
 
   def neighbours(row: Int, col: Int) : Seq[(Int,Int)] = {
     for {
@@ -30,9 +29,19 @@ object Minesweeper {
       (rowIndex, colIndex)
   }
 
+  def isBomb(coord: (Int, Int), bombs: Set[(Int, Int)]) =
+    bombs.contains(coord)
+
   def neighbouringBombs(coord: (Int, Int), bombs: Set[(Int, Int)]): Int = {
-    val s = neighbours(coord._1, coord._2) filter( n => bombs.contains(n))
-    s.length
+    neighbours(coord._1, coord._2) count(isBomb(_, bombs))
   }
-  def createLine(f:Field,lineNumber:Int)=""
+
+  def createLine(f:Field,lineNumber:Int)= {
+
+    def checkField(col:Int):String =
+      if(isBomb( (lineNumber, col), f.bombs )) "*"
+      else neighbouringBombs( (lineNumber, col), f.bombs ).toString
+
+    (0 until f.cols).map( checkField ).mkString
+  }
 }

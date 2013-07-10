@@ -56,6 +56,7 @@ class MinesweeperSuite extends FunSuite {
 
   test("test evaluation"){
     val in = List(
+      "3 2",
       ".*",
       "..",
       "*."
@@ -64,6 +65,21 @@ class MinesweeperSuite extends FunSuite {
       "1*",
       "22",
       "*1"
+    )
+    assert(out === evaluate(in))
+  }
+
+  test("test evaluation 1 bomb"){
+    val in = List(
+      "3 2",
+      ".*",
+      "..",
+      ".."
+    )
+    val out = List(
+      "1*",
+      "11",
+      "00"
     )
     assert(out === evaluate(in))
   }
@@ -80,8 +96,12 @@ class MinesweeperSuite extends FunSuite {
     assert(2 === neighbouringBombs((0, 0), Set((1, 1),(1,0),(0,100))))
   }
 
-  test("build output"){
-    assert("" === createLine(Field(1,1,Set()),0))
+  test("build output 0"){
+    assert("0" === createLine(Field(1,1,Set()),0))
+  }
+
+  test("build output 1 bomb"){
+    assert("1*10" === createLine(Field(1,4,Set( (0,1) )),0))
   }
 
 }
