@@ -18,6 +18,15 @@ class MinesweeperSuite extends FunSuite {
     assert(Field(1, 1, Set()) === parse(in))
   }
 
+  test("parse three lines into") {
+    val in = List(
+      "2 2",
+      "*.",
+      ".*"
+    )
+    assert(Field(2, 2, Set((0, 0), (1,1))) === parse(in))
+  }
+
   test("parse two columns into") {
     val in = List(
       "1 2",
@@ -40,5 +49,20 @@ class MinesweeperSuite extends FunSuite {
       "*."
     )
     assert(Set((0,1),(2,0)) === buildSet(in))
+  }
+
+  test("test evaluation"){
+    val in = List(
+      ".*",
+      "..",
+      "*."
+    )
+    val out = List(
+      "1*",
+      "22",
+      "*1"
+    )
+    assert(out === evaluate(in))
+
   }
 }
