@@ -25,4 +25,20 @@ class MinesweeperSuite extends FunSuite {
     )
     assert(Field(1,2, Set()) === parse(in))
   }
+
+  test("test info line to set"){
+    val in = List(
+            ".*"
+    )
+    assert(Set((0,1)) === buildSet(in))
+  }
+
+  test("test info lines to set"){
+    val in = List(
+      ".*",
+      "..",
+      "*."
+    )
+    assert(Set((0,1),(2,0)) === buildSet(in))
+  }
 }

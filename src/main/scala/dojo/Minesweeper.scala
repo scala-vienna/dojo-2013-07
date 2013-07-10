@@ -8,4 +8,9 @@ object Minesweeper {
     val a = in.head.split(" ")
     Field(a(0).toInt,a(1).toInt,Set())
   }
+  def buildSet(in:List[String]) :Set[(Int,Int)]= (for {
+    (line, rowIndex:Int ) <- in.zipWithIndex
+    (char, columnIndex:Int) <- line.zipWithIndex
+    if(char == '*')
+   } yield (rowIndex, columnIndex)).toSet
 }
