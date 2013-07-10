@@ -20,4 +20,8 @@ object Minesweeper {
     "22",
     "*1"
   )
+
+  def neighbours(in:Field) : Seq [(Int,Int)] = {
+    Seq.empty
+  }
 }

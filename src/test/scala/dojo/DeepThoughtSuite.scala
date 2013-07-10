@@ -50,6 +50,10 @@ class MinesweeperSuite extends FunSuite {
     )
     assert(Set((0,1),(2,0)) === buildSet(in))
   }
+  test("test neighbours"){
+    val in = Field(1, 1, Set())
+    assert(Seq.empty === neighbours(in))
+  }
 
   test("test evaluation"){
     val in = List(
