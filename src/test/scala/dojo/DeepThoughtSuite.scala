@@ -71,4 +71,8 @@ class MinesweeperSuite extends FunSuite {
   test("neighbours have 0 bombs") {
     assert(0 === neighbouringBombs((0, 0), Set()))
   }
+
+  test("neighbours have 1 bombs") {
+    assert(1 === neighbouringBombs((0, 0), Set((1, 1))))
+  }
 }

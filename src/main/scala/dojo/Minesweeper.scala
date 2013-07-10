@@ -30,6 +30,9 @@ object Minesweeper {
       (rowIndex, colIndex)
   }
 
-  def neighbouringBombs(coord: (Int, Int), bombs: Set[(Int, Int)]): Int =
-    0
+  def neighbouringBombs(coord: (Int, Int), bombs: Set[(Int, Int)]): Int = {
+    val s = neighbours(coord._1, coord._2) filter( n => bombs.contains(n))
+    s.length
+  }
+
 }
