@@ -4,12 +4,25 @@ import org.junit.runner.RunWith
 import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
 
-import dojo.DeepThought._
+import dojo.Minesweeper._
 
 @RunWith(classOf[JUnitRunner])
-class DeepThoughtSuite extends FunSuite {
+class MinesweeperSuite extends FunSuite {
 
-  test("Answer to the Ultimate Question of Life, The Universe, and Everything") {
-    assert(42 === compute("foo"))
+
+  test("parse line into") {
+    val in = List(
+      "1 1",
+      "."
+    )
+    assert(Field(1, 1, Set()) === parse(in))
+  }
+
+  test("parse two columns into") {
+    val in = List(
+      "1 2",
+      ".."
+    )
+    assert(Field(1,2, Set()) === parse(in))
   }
 }
