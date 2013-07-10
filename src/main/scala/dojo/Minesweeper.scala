@@ -23,11 +23,12 @@ object Minesweeper {
 
   def neighbours(row: Int, col: Int) : Seq[(Int,Int)] = {
     for {
-      x <- row - 1 to row + 1
-      y <- col -1 to col+1
-    } yield {
-      Seq.empty
-    }
-    Seq((-1, -1), (-1, 0), (-1, 1), (0, -1), (0 ,1), (1, -1), (1, 0), (1, 1))
+      rowIndex <- row - 1 to row + 1
+      colIndex <- col -1 to col+1
+      if(rowIndex != row || colIndex != col)
+    } yield
+      (rowIndex, colIndex)
+
+
   }
 }
