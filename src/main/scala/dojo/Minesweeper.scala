@@ -34,5 +34,5 @@ object Minesweeper {
     val s = neighbours(coord._1, coord._2) filter( n => bombs.contains(n))
     s.length
   }
-
+  def createLine(f:Field,lineNumber:Int)=""
 }
